@@ -1,0 +1,199 @@
+/* BASE: reset margini e sfondo fisso con immagine */
+body {
+  margin: 0; /* niente margine di default */
+  padding: 0; /* niente padding */
+  background: url('immagine.png') no-repeat center center fixed; /* sfondo immagine sempre centrato e fisso */
+  background-size: cover; /* scala per coprire tutto */
+  font-family: 'Share Tech Mono', monospace; /* font mono-fisso */
+  color: #f2f2f2; /* testo chiaro */
+  position: relative; /* per overlay */
+  overflow-x: hidden; /* niente scroll orizzontale */
+}
+
+/* contenitore principale semitrasparente con bordo rosso che “glowna” */
+.container {
+  background-color: rgba(0, 0, 0, 0.6); /* sfondo nero traslucido */
+  border: 2px solid #ff4d4d; /* bordo rosso */
+  max-width: 900px; /* larghezza massima */
+  margin: 50px auto; /* centrato con margine verticale */
+  padding: 30px; /* spazio interno */
+  text-align: center; /* testo centrato */
+  border-radius: 10px; /* angoli arrotondati */
+  box-shadow: 0 0 20px #ff4d4d; /* ombra rossa */
+  animation: glowBorder 3s ease-in-out infinite; /* animazione di glow */
+  z-index: 2; /* sopra overlay */
+  position: relative;
+}
+
+/* definizione animazione lampeggiante del bordo */
+@keyframes glowBorder {
+  0% { box-shadow: 0 0 10px #ff4d4d; }
+  50% { box-shadow: 0 0 40px #ff8080; }
+  100% { box-shadow: 0 0 10px #ff4d4d; }
+}
+
+/* RESPONSIVE: riduce margini e dimensioni font su schermi piccoli */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px; /* meno margine */
+    padding: 20px; /* meno padding */
+  }
+
+  .start-button {
+    font-size: 1.2rem; /* testo più piccolo */
+    padding: 0.8rem 1.8rem; /* bottone più piccolo */
+  }
+
+  h1 { font-size: 20px; } /* titolo ridotto */
+  .description { font-size: 16px; } /* descrizione più piccola */
+  .warning { font-size: 20px; } /* avviso più piccolo */
+}
+
+/* OVERLAY RADIOATTIVO: sfondo verdino che pulsa */
+.radioactive-overlay {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; /* copre tutto */
+  background: radial-gradient(circle at center, rgba(173,255,47,0.1) 0%, rgba(0,0,0,0) 70%); /* gradiente verde trasparente */
+  animation: pulseBackground 6s infinite; /* pulsa */
+  pointer-events: none; /* non cattura click */
+  z-index: 1;
+}
+
+/* animazione del pulso del verde */
+@keyframes pulseBackground {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 0.15; transform: scale(1.05); }
+}
+
+/* BOTTONE START: sempre in basso al centro */
+.start-button {
+  position: fixed; left: 50%; transform: translateX(-50%); bottom: 10%; /* posizione fissa */
+  padding: 1rem 2.5rem; font-size: 1.6rem; /* dimensione testo e padding */
+  font-family: 'Press Start 2P', cursive; /* font stile arcade */
+  background-color: #FF6F61; color: #fff; /* sfondo e testo */
+  border: 2px solid #FFCA28; border-radius: 10px; /* bordo giallo e angoli arrotondati */
+  cursor: pointer; outline: 1px solid #fff; /* mano e contorno */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animazioni */
+  z-index: 3; /* sopra quasi tutto */
+  text-transform: uppercase;
+}
+
+/* effetto hover ingrandisce leggermente */
+.start-button:hover {
+  transform: translateX(-50%) scale(1.05);
+}
+
+/* stato clicked: bagliore radioattivo */
+.start-button.clicked {
+  animation: radioactiveGlow 0.5s ease-out;
+  box-shadow: 0 0 20px #ADFF2F, 0 0 40px #ADFF2F;
+}
+
+/* animazione glow radioattivo */
+@keyframes radioactiveGlow {
+  0%  { box-shadow: 0 0 10px #ADFF2F, 0 0 20px #ADFF2F; }
+  50% { box-shadow: 0 0 30px #ADFF2F, 0 0 60px #ADFF2F; }
+  100%{ box-shadow: 0 0 10px #ADFF2F, 0 0 20px #ADFF2F; }
+}
+
+/* TIPOGRAFIA: stile e colore dei testi */
+h1 {
+  font-family: 'Press Start 2P', cursive; /* font arcade */
+  font-size: 28px; margin-bottom: 20px; /* dimensione e spazio */
+  color: #ff4d4d; text-transform: uppercase; /* rosso e maiuscole */
+}
+.description {
+  font-family: 'Share Tech Mono', monospace; /* testo monospazio */
+  font-size: 18px; line-height: 1.6; margin-bottom: 30px; /* leggibilità */
+}
+.warning {
+  font-family: 'VT323', monospace; /* font d’avviso tipo console */
+  font-size: 24px; color: #ffcc00; /* giallo */
+}
+
+/* TESTO GLITCH: fa il glitch sul testo */
+.glitch-text {
+  position: relative;
+  animation: glitch 4s infinite;
+}
+
+/* keyframes del glitch testuale */
+@keyframes glitch {
+  0%,100% { text-shadow: none; transform: none; }
+  2% { text-shadow: 2px 0 red,-2px 0 blue; transform: translateX(-1px); }
+  4% { text-shadow: -2px 0 red,2px 0 blue; transform: translateX(1px); }
+  6% { text-shadow: 2px 2px lime,-2px -2px magenta; transform: translateY(1px); }
+  8% { text-shadow: none; transform: none; }
+}
+
+/* OVERLAY SCHERMO GLITCH: linee orizzontali che appaiono */
+.glitch-screen {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;
+  opacity: 0; z-index: 10002; /* sopra video */
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255,0,0,0.2) 0px,
+    rgba(0,0,0,0.5) 2px,
+    transparent 2px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply; transition: opacity 0.5s ease;
+}
+.glitch-screen.active {
+  opacity: 1;
+  animation: glitch-retro 1s steps(5,end) forwards;
+}
+
+/* animazione glitch "retro" per lo schermo */
+@keyframes glitch-retro {
+  0%   { opacity:0.8; transform:none; filter:contrast(1) brightness(1); }
+  20%  { opacity:0.9; transform:translate(10px,0) skew(5deg); filter:brightness(1.3); }
+  40%  { opacity:0.7; transform:translate(-10px,0) skew(-5deg); filter:contrast(1.5); }
+  60%  { opacity:0.85; transform:translate(5px,-5px) skew(3deg); filter:brightness(0.9); }
+  80%  { opacity:0.95; transform:translate(-5px,5px) skew(-3deg); filter:brightness(1.1); }
+  100% { opacity:0; transform:none; filter:contrast(1) brightness(1); }
+}
+
+/* VIDEO INTRO: copre tutto quando parte */
+#intro-video {
+  display: none; /* invisibile finché non parte */
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+  z-index: 10000;
+}
+
+/* FADE-TO-BLACK: schermo nero che appare lentamente */
+#fade-to-black {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-color: black; opacity: 0; pointer-events:none;
+  transition: opacity 4s ease-in-out; z-index: 10003;
+}
+
+/* LOGO DEL GIOCO: centrato e ridimensionabile */
+#game-logo {
+  display: block; margin: 20px auto; max-width: 150px; width: 25vw; pointer-events:none;
+}
+
+/* BOTTONE CREDITI: posizione fissa in basso a sinistra */
+.credits-button {
+  position: fixed; left: 8%; bottom: 2.5%; transform:translateX(-50%);
+  padding: 1rem 2.5rem; font-size:1rem; font-family: 'Press Start 2P', cursive;
+  background-color:#FF6F61; color:#fff; border:2px solid #FFCA28; border-radius:10px;
+  cursor:pointer; text-transform:uppercase; outline:1px solid #fff;
+  transition:transform 0.3s ease, box-shadow 0.3s ease; z-index:3;
+}
+.credits-button:hover { transform:translateX(-50%) scale(1.05); }
+
+/* BOTTONE INDIETRO (credits.html) */
+.back-button {
+  position: fixed; left: 50%; bottom:5%; transform:translateX(-50%);
+  padding:1rem 2.5rem; font-family:'Press Start 2P',cursive;
+  background-color:#FF6F61;color:#fff;border:2px solid #FFCA28;border-radius:10px;
+  cursor:pointer;text-transform:uppercase;outline:1px solid #fff;
+  transition:transform 0.3s ease, box-shadow 0.3s ease; z-index:3;
+}
+.back-button:hover { transform:translateX(-50%) scale(1.05); }
+
+/* LINEA DI SEPARAZIONE rossa tra sezioni */
+.lineaSeparazione {
+  border:0; height:2px; background:#ff4d4d; width:80%;
+  margin:20px auto; /* margini verticale e centrata */
+}

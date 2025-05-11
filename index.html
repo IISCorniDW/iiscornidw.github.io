@@ -1,13 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Escaper from Corni</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Prova</h1>
-  </body>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apocalisse Corni</title>
+  <!-- import dei font per lo stile retrò -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+  <!-- collegamento al file CSS esterno -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- overlay radioattiva: crea un effetto di luce verdastra / radioattiva sullo schermo -->
+  <div class="radioactive-overlay"></div>
+  <!-- glitch overlay: simulazione di sfarfallio video / distorsione -->
+  <div class="glitch-screen"></div>
+  <!-- fade: elemento nero che sfuma lo schermo a nero -->
+  <div id="fade-to-black"></div>
+
+  <!-- intro video nascosto di base -->
+  <video id="intro-video" src="intro.mp4" preload="auto"></video>
+
+  <!-- contenuto principale nascosto finché non si avvia il gioco -->
+  <div class="main-content">
+    <div class="container">
+      <!-- titolo principale con effetto glitch -->
+      <h1 class="glitch-text">Apocalisse Corni</h1>
+      <!-- descrizione del gioco con stile glitch -->
+      <p class="description glitch-text">
+        Il Corni è stato colpito da una catastrofe nucleare. L’aria è tossica, le strade sono vuote, la città è avvolta da una luce innaturale.<br>
+        Sarà una sfida per la <strong>sopravvivenza</strong>. Riuscirai a risolvere gli enigmi prima che le radiazioni ti consumino?
+      </p>
+      <!-- messaggio di avvertimento finale -->
+      <p class="warning glitch-text">
+        Se fallisci... la contaminazione sarà irreversibile.
+      </p>
+    </div>
+
+    <!-- logo del gioco -->
+    <img id="game-logo" src="logo.png" alt="Corni Escaperoom Logo">
+    <!-- pulsante per iniziare il gioco -->
+    <button class="start-button">Inizia il Gioco</button>
+  </div>
+
+  <!-- pulsante per andare alla pagina dei crediti -->
+  <a href="credits.html"><button class="credits-button">Crediti</button></a>
+
+  <script>
+    // selezione degli elementi dal DOM
+    const btn    = document.querySelector('.start-button'); // bottone Inizia il Gioco
+    const glitch = document.querySelector('.glitch-screen'); // overlay glitch
+    const fade   = document.getElementById('fade-to-black'); // overlay fade to black
+    const vid    = document.getElementById('intro-video'); // video d'introduzione
+
+    // quando clicchi sul bottone
+    btn.addEventListener('click', () => {
+      // attiva l'effetto glitch
+      glitch.classList.add('active');
+      // dopo 1 secondo togli il glitch
+      setTimeout(() => glitch.classList.remove('active'), 1000);
+
+      // mostra e riproduci il video di intro
+      vid.style.display = 'block';
+      vid.play();
+
+      // quando il video inizia a suonare
+      vid.addEventListener('play', () => {
+        // dopo 3 secondi sfuma a nero
+        setTimeout(() => fade.style.opacity = 1, 3000);
+      }, { once: true }); // esegui solo una volta
+
+      // quando il video finisce
+      vid.addEventListener('ended', () => {
+        // dopo 2 secondi reindirizza alla pagina di gioco
+        setTimeout(() => window.location.href = 'game.html', 2000);
+      }, { once: true }); // esegui solo una volta
+
+    });
+  </script>
+</body>
 </html>
