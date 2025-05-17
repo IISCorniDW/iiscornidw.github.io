@@ -1,0 +1,79 @@
+/*
+	Aggiungete anche questo codice al file HTML 
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./base.css" />
+*/
+body {
+	background-image: url(libreria.png);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: 'Courier New', monospace;
+}
+
+ul > li, ul > li > a {
+	list-style: disc;
+	text-decoration: none;
+	color: red;
+}
+
+ul > li > a:hover {
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-decoration: underline;
+}
+
+.titolo {
+	font-family: 'Press Start 2P';
+	color: red;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/*Div per contenere tutto il della pagina*/
+.container {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: red;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
+	padding: 20px;
+	max-width: 800px;
+	margin: 20px auto;
+	
+}
+
+p {
+	font-size: 18px;
+	color: white;
+}
+
+.warning {
+  	color: yellow;
+	font-size: 20px;
+	font-weight: bold;
+  }
+
+.bottone {
+	background-color: #fe6f61;
+	border: none;
+	color: white;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.bottone:hover {
+	background-color: #e65b54;
+}
+
+.highlight {
+	font-weight: bold;
+	color: burlywood;
+}
