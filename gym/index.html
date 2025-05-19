@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>palestra</title>
+  <link rel="icon" type="image/png" href="icona-gioco.png" sizes="32x32">
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="titolo">Benvenuti in palestra</h1>
+    <p>
+      Un gas radioattivo sta pian piano ricoprendo tutto il terreno scolastico. L'unico modo per salvarvi è prendere una tuta antiradiazioni nella palestra...<br>
+      Ma prima, devi superare due quiz a tema palestra!
+    </p>
+
+    <!-- DOMANDA 1 -->
+    <div class="domanda zoom">
+      <p>🏋️ Quale di questi attrezzi si usa più spesso per sollevare pesi in palestra?</p>
+      <div class="risposte">
+        <label class="risposta"><input type="radio" name="q1" value="A"> A) Il tapis roulant</label>
+        <label class="risposta"><input type="radio" name="q1" value="B"> B) Il bilanciere</label>
+        <label class="risposta"><input type="radio" name="q1" value="C"> C) La cyclette</label>
+        <label class="risposta"><input type="radio" name="q1" value="D"> D) Il pallone da calcio</label>
+      </div>
+      <button class="bottone" onclick="verificaDomanda1()">Conferma risposta</button>
+      <div id="risultato1"></div>
+    </div>
+
+    <!-- DOMANDA 2 -->
+    <div class="domanda zoom">
+      <p>💪 Quale esercizio è più indicato per allenare i muscoli delle braccia?</p>
+      <div class="risposte">
+        <label class="risposta"><input type="radio" name="q2" value="A"> A) Squat</label>
+        <label class="risposta"><input type="radio" name="q2" value="B"> B) Crunch</label>
+        <label class="risposta"><input type="radio" name="q2" value="C"> C) Curl con manubri</label>
+        <label class="risposta"><input type="radio" name="q2" value="D"> D) Step</label>
+      </div>
+      <button class="bottone" onclick="verificaDomanda2()">Conferma risposta</button>
+      <div id="risultato2"></div>
+    </div>
+
+    <!-- RISULTATO -->
+    <div id="password" class="successo" style="display:none; margin-top: 30px;">
+      🎉 Hai risposto correttamente a entrambe le domande!<br>
+      🔐 La password per entrare in palestra è: <strong>"hacking101"</strong>
+    </div>
+  </div>
+
+  <script>
+    let risposta1Corretta = false;
+    let risposta2Corretta = false;
+
+    function verificaDomanda1() {
+      const risposta = document.querySelector('input[name="q1"]:checked');
+      const risultato = document.getElementById("risultato1");
+      if (!risposta) {
+        risultato.innerHTML = "<p class='errore'>❗ Seleziona una risposta prima di confermare.</p>";
+        return;
+      }
+
+      if (risposta.value === "B") {
+        risultato.innerHTML = "<p class='successo'>✅ Corretto!</p>";
+        risposta1Corretta = true;
+      } else {
+        risultato.innerHTML = "<p class='errore'>❌ Risposta sbagliata! Riprova.</p>";
+        risposta1Corretta = false;
+      }
+
+      mostraPasswordSePronto();
+    }
+
+    function verificaDomanda2() {
+      const risposta = document.querySelector('input[name="q2"]:checked');
+      const risultato = document.getElementById("risultato2");
+      if (!risposta) {
+        risultato.innerHTML = "<p class='errore'>❗ Seleziona una risposta prima di confermare.</p>";
+        return;
+      }
+
+      if (risposta.value === "C") {
+        risultato.innerHTML = "<p class='successo'>✅ Corretto!</p>";
+        risposta2Corretta = true;
+      } else {
+        risultato.innerHTML = "<p class='errore'>❌ Risposta sbagliata! Riprova.</p>";
+        risposta2Corretta = false;
+      }
+
+      mostraPasswordSePronto();
+    }
+
+    function mostraPasswordSePronto() {
+      if (risposta1Corretta && risposta2Corretta) {
+        document.getElementById("password").style.display = "block";
+      }
+    }
+  </script>
+</body>
+</html>
