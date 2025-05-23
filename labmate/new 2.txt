@@ -1,0 +1,26 @@
+RAGAZZI UNA VOLTA PER  TUTTE QUESTA è LA LINEA GUIDA PER IL GIOCO:
+1. I bambini entrano con un TELEFONO nella pagina iniziale dove verranno mandati o nell stanza o direttamente nel laboratorio
+2. Nel laboratorio/pagina si hanno due possibilità 
+    1. Far fare un gioco/attività in html e successivamente (porta al laboratorio nel caso non ci siano ancora) il gioco in python (consigliato)
+    2. Far fare prima il gioco in python e poi l'html
+3. L'ultima attività che si fa fare nel laboratorio dovrà dare o il link HTML della pagina successiva o portare nel laboratorio successivo della pagina del laboratorio/aula successiva (coordinandosi anche con il gruppo successivo)
+
+HTML:
+Per generare le immagini usate la AI ideogram.ai con il seed 1977076645 e il prompt "realizza uno sfondo che rappresenti un [Tema stanza] con lo stile del gioco 60 secondi, sullo sfondo devono essere [Elementi dell stanza]
+Deve essere adatto a dispositivi mobili (Telefoni/Tablet)
+Dovrà seguire una tematica di colori e temi data, con css fornito
+Deve essere completamente inerente al tema della stanza
+NON deve essere troppo lungo (impiegare pochi minuti)
+Siate il più creativi possibile non cose banali
+So che è difficile ma se volete fare delle cose interattive vi chiedo di provare a farle in JavaScript perché non sappiamo quante pagine possiamo consegnare
+
+PYTHON:
+Il gioco sarà già avviato sul computer della stanza appropriata
+Deve seguire una serie di personaggi inventati (introducono le stanze e presenti nel gioco), li fornirà barbieri a breve nel mentre provate con il cazzo che volete (se avete bisogno chiedete a lui)
+Deve essere un gioco vero ma fate in modo che scoprano qualcosa di più sulla materia che si svolge in quella stanza ricordatevi che sono a fare orientamento
+Deve essere interattivo e possibilmente che includa più alunni, facciamo in modo che non si metta solo uno a giocare e basta
+Siate il più creatvi possibile non cose banali
+
+GENERALE:
+Per tutte le attività da svolgere cerchiamo di non fare le stesse cose, faccimo cose diverse tra un gruppo e l'altro
+Se avete dubbi non esitate a chiedere

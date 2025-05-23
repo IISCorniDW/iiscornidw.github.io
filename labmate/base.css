@@ -1,0 +1,72 @@
+body {
+	background-image: url('sfondo.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	font-family: 'Courier New', monospace;
+}
+
+ul > li, ul > li > a {
+	list-style: disc;
+	text-decoration: none;
+	color: red;
+}
+
+ul > li > a:hover {
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+	text-decoration: underline;
+}
+
+.titolo {
+	font-family: 'Press Start 2P';
+	color: red;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.container {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: red;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6), 0 0 30px rgba(255, 0, 0, 0.4);
+	padding: 20px;
+	max-width: 800px;
+	margin: 20px auto;
+}
+
+.bottone {
+	background-color: #fe6f61;
+	border: none;
+	color: white;
+	padding: 15px 25px;
+	font-size: 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	transition: background-color 0.2s ease-in-out;
+	position: absolute;
+    bottom: 18%;
+    right: 18%;
+}
+
+.bottone:hover {
+	background-color: #e65b54;
+}
+
+p {
+	padding-left: 18%;
+	color: white;
+	padding-right: 18%;
+	font-size: 22px;
+}
+.test2 {
+	color: red;
+	padding-left: 18%;
+	font-size: 24px;
+}
+a { 
+	text-decoration: none;
+}
+
