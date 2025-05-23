@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- <link rel="stylesheet" href="game.css"> -->
+  <title>Replace the Farmer</title>
+  <style>
+    body {
+      background: #1e1e3a;
+      color: white;
+      font-family: sans-serif;
+      height: fit-content;
+      margin-top: 60px;
+    }
+
+    canvas {
+      border: 1px solid #000;
+      background: rgb(139, 69, 19);
+    }
+
+    #navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e1e3a;
+      color: white;
+      padding: 10px 20px;
+      font-family: sans-serif;
+      border-bottom: 1px solid #333;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    #center-display {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-grow: 1;
+      justify-content: center;
+    }
+
+    #game-title {
+      flex-shrink: 0;
+    }
+
+    #controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+
+    #game-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #navbar .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    #navbar .score {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+    }
+
+    #editor {
+      width: 300px;
+      height: 600px;
+      padding: 10px;
+      resize: none;
+      background-color: #1e1e3a;
+      color: white;
+      font-family: monospace;
+      white-space: pre;
+      overflow: auto;
+    }
+
+    #info {
+      width: 300px;
+      height: 600px;
+      padding: 10px;
+      font-family: sans-serif;
+      color: white;
+      background-color: rgb(30, 30, 70);
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .cmd-button {
+      margin-top: 5px;
+      display: block;
+    }
+
+    #controls {
+      margin-right: 40px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #controls button {
+      background-color: #333;
+      border: none;
+      color: white;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 3px;
+      transition: background-color 0.3s;
+    }
+
+    #controls button:hover {
+      background-color: #555;
+    }
+
+
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      width: 100%;
+    }
+
+    #editor {
+      margin-right: 20px;
+    }
+
+    #game {
+      margin-right: 20px;
+    }
+
+    #grain-display,
+    #cannabis-display {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #grain-display img,
+    #cannabis-display img {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="navbar">
+    <div id="game-title">Replace the Farmer</div>
+    <div id="center-display">
+      <div id="grain-display">
+        <img src="img/grano/grano.png" alt="Grano">
+        <span id="grain-count">0</span>
+      </div>
+      <div id="cannabis-display">
+        <img src="img/cannabis/cannabis.png" alt="Cannabis">
+        <span id="cannabis-count">0</span>
+      </div>
+    </div>
+    <div id="controls">
+      <button onclick="runCode()">Avvia</button>
+      <button onclick="resetEditor()">Reset</button>
+    </div>
+  </div>
+
+  <div id="container">
+    <textarea id="editor" spellcheck="false"></textarea>
+    <canvas id="game" width="600" height="600"></canvas>
+    <div id="info">
+      <div style="flex-grow: 1; width: 100%;">
+        <h3 style="text-align: right;">Comandi disponibili</h3>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>muovi(su)</b><br>Muovi il drone verso l'alto</p>
+          <button class="cmd-button" onclick="insertCommand('muovi(su)')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>muovi(giu)</b><br>Muovi il drone verso il basso</p>
+          <button class="cmd-button" onclick="insertCommand('muovi(giu)')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>muovi(sinistra)</b><br>Muovi il drone verso sinistra</p>
+          <button class="cmd-button" onclick="insertCommand('muovi(sinistra)')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>muovi(destra)</b><br>Muovi il drone verso destra</p>
+          <button class="cmd-button" onclick="insertCommand('muovi(destra)')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>pianta()</b><br>Semina una pianta</p>
+          <button class="cmd-button" onclick="insertCommand('pianta(grano)')">grano</button>
+          <button class="cmd-button" onclick="insertCommand('pianta(cannabis)')">cannabis</button>
+
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>raccogli()</b><br>Raccogli la pianta cresciuta</p>
+          <button class="cmd-button" onclick="insertCommand('raccogli()')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>se(puoiRaccogliere())<br>{ ... }</b><br>Controlla se la pianta è cresciuta</p>
+          <button class="cmd-button" onclick="insertCommand('se(puoiRaccogliere()) {\n  // istruzioni\n}')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>ripeti(3)<br>{ ... }</b><br>Ripeti una serie di istruzioni</p>
+          <button class="cmd-button" onclick="insertCommand('ripeti(3) {\n  // istruzioni\n}')">add</button>
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>lunghezza()</b><br>Restituisce la lunghezza del campo</p>
+          <!-- <button class="cmd-button" onclick="insertCommand('ripeti(3) {\n  // istruzioni\n}')">add</button> -->
+        </div><br>
+
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <p style="margin: 0;"><b>puoiRaccogliere()</b><br>Restituisce se la pianta e prnta o no</p>
+          <!-- <button class="cmd-button" onclick="insertCommand('ripeti(3) {\n  // istruzioni\n}')">add</button> -->
+        </div><br>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script>
+    setInterval(draw, 500);
+    const canvas = document.getElementById("game");
+    const ctx = canvas.getContext("2d");
+
+    const droneImg = new Image();
+    droneImg.src = 'img/drone.png';
+
+    const DIM = 60;
+    const ROWS = 10;
+    const COLS = 10;
+    let grid = Array.from({ length: ROWS }, () => Array(COLS).fill("vuoto"));
+    let robot = { row: 0, col: 0, grano: 0, crescita: {} };
+
+    let grainCount = 0;
+    const grainDisplay = document.getElementById("grain-count");
+
+    let cannabisCount = 0;
+    const cannabisDisplay = document.getElementById("cannabis-count");
+
+    const cellSize = 60;
+
+    droneImg.onload = () => {
+      draw();
+    };
+
+    const granoSeedImg = new Image();
+    granoSeedImg.src = 'img/grano/seed.png';
+
+    const granoImg = new Image();
+    granoImg.src = 'img/grano/plant.png';
+
+    const cannabisSeedImg = new Image();
+    cannabisSeedImg.src = 'img/cannabis/seed.png';
+
+    const cannabisImg = new Image();
+    cannabisImg.src = 'img/cannabis/plant.png';
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          ctx.strokeStyle = "#000";
+          ctx.strokeRect(c * DIM, r * DIM, DIM, DIM);
+
+          const cella = grid[r][c];
+          if (cella !== "vuoto" && cella !== null) {
+            let key = `${r},${c}`;
+            let tempoInizio = robot.crescita[key];
+            let pronto = tempoInizio && Date.now() - tempoInizio >= 5000;
+            let img;
+
+            if (cella.tipo === "grano") {
+              img = pronto ? granoImg : granoSeedImg;
+            } else if (cella.tipo === "cannabis") {
+              img = pronto ? cannabisImg : cannabisSeedImg;
+            }
+
+            if (img) {
+              ctx.drawImage(img, c * DIM + 10, r * DIM + 10, DIM - 20, DIM - 20);
+            }
+          }
+        }
+      }
+
+      const scale = 0.6;
+      const droneSize = DIM * scale;
+      const offset = (DIM - droneSize) / 2;
+      ctx.drawImage(droneImg, robot.col * DIM + offset, robot.row * DIM + offset, droneSize, droneSize);
+    }
+
+
+
+    function move(dir) {
+      if (dir === "su") {
+        robot.row = (robot.row - 1 + ROWS) % ROWS;
+      } else if (dir === "giu") {
+        robot.row = (robot.row + 1) % ROWS;
+      } else if (dir === "sinistra") {
+        robot.col = (robot.col - 1 + COLS) % COLS;
+      } else if (dir === "destra") {
+        robot.col = (robot.col + 1) % COLS;
+      }
+    }
+
+
+    const grano = "grano";
+    const cannabis = "cannabis";
+
+    function pianta(tipo) {
+      const r = robot.row;
+      const c = robot.col;
+
+      if (grid[r][c] === "vuoto") {
+        grid[r][c] = { tipo };
+        robot.crescita[`${r},${c}`] = Date.now();
+      }
+    }
+
+    function puoiRaccogliere() {
+      let key = `${robot.row},${robot.col}`;
+      return robot.crescita[key] && Date.now() - robot.crescita[key] >= 5000;
+    }
+
+
+    function raccogli() {
+      const r = robot.row;
+      const c = robot.col;
+      const cella = grid[r][c];
+
+      if (cella && puoiRaccogliere()) {
+        if (cella.tipo === grano) {
+          incrementGrain();
+        } else if (cella.tipo === cannabis) {
+          incrementCannabis();
+        }
+
+        grid[r][c] = "vuoto";
+        delete robot.crescita[`${r},${c}`];
+      }
+    }
+
+    function lunghezza() {
+      return COLS;
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function runScript(lines) {
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i].trim();
+        if (!line) continue;
+
+        if (line.startsWith("muovi")) {
+          let dir = line.match(/muovi\((.*)\)/)[1].toLowerCase();
+          move(dir);
+        } else if (line.startsWith("pianta")) {
+          let match = line.match(/pianta\((.*)\)/);
+          if (match) {
+            pianta(match[1].toLowerCase());
+          }
+        } else if (line.startsWith("raccogli")) {
+          raccogli();
+        } else if (line.startsWith("se")) {
+          let match = line.match(/se\((.*)\)\s*{\s*/);
+          if (!match) continue;
+          let cond = match[1].trim();
+          let blocco = [];
+          i++;
+          while (i < lines.length && !lines[i].includes("}")) {
+            blocco.push(lines[i]);
+            i++;
+          }
+          if (cond === "puoiRaccogliere()" && puoiRaccogliere()) {
+            await runScript(blocco);
+          }
+        } else if (line.startsWith("ripeti")) {
+          let match = line.match(/ripeti\((.+?)\)\s*{\s*/);
+          if (!match) continue;
+          let expr = match[1].trim();
+          let n = 0;
+          try {
+            // Valuta l'espressione, supporta anche lunghezza()
+            n = eval(expr.replace(/lunghezza\(\)/g, COLS));
+          } catch (e) {
+            n = 0; // fallback se c'è un errore
+          }
+          let blocco = [];
+          i++;
+          let openBraces = 1;
+          while (i < lines.length && openBraces > 0) {
+            if (lines[i].includes("{")) openBraces++;
+            if (lines[i].includes("}")) openBraces--;
+            if (openBraces > 0) blocco.push(lines[i]);
+            i++;
+          }
+
+          for (let j = 0; j < n; j++) {
+            await runScript(blocco);
+          }
+        } else {
+          return;
+        }
+        draw();
+        await sleep(300);
+      }
+    }
+
+    function incrementGrain() {
+      grainCount++;
+      grainDisplay.textContent = grainCount;
+    }
+
+    function incrementCannabis() {
+      cannabisCount++;
+      cannabisDisplay.textContent = cannabisCount;
+    }
+
+    async function runCode() {
+      let codice = document.getElementById("editor").value;
+      await runScript(codice.split("\n"));
+    }
+
+    function resetEditor() {
+      document.getElementById("editor").value = "";
+    }
+
+    function insertCommand(cmd) {
+      let editor = document.getElementById("editor");
+      let start = editor.selectionStart;
+      let end = editor.selectionEnd;
+      let before = editor.value.substring(0, start);
+      let after = editor.value.substring(end);
+      editor.value = before + cmd + "\n" + after;
+      editor.focus();
+      editor.selectionStart = editor.selectionEnd = start + cmd.length + 1;
+    }
+
+    draw();
+  </script>
+</body>
+
+</html>

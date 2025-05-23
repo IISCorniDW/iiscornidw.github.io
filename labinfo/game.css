@@ -1,0 +1,48 @@
+body {
+    background: #1e1e3a;
+    color: white;
+    font-family: sans-serif;
+    height: 100vh;
+}
+
+canvas {
+    border: 1px solid #000;
+    background: #fff;
+}
+
+#editor {
+    width: 300px;
+    height: 600px;
+    resize: none;
+    background-color: #1e1e3a;
+    color: white;
+    font-family: monospace;
+    white-space: pre;
+    overflow: auto;
+}
+
+#output {
+    background: #fdd;
+    color: #900;
+    padding: 10px;
+    font-family: monospace;
+    border-top: 1px solid #900;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 30px;
+}
+
+#info {
+    width: 300px;
+    height: 600px;
+    padding: 10px;
+    font-family: sans-serif;
+    color: white;
+    background-color: rgb(30, 30, 70);
+    overflow: auto;
+}
+
+.cmd-button {
+    margin-top: 5px;
+    display: block;
+}

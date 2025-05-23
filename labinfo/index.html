@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Laboratorio Informatica</title>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+	<!-- Testo introduttivo -->
+	<div class="container">
+		<h1>Benvenuto in laboratorio di informatica!</h1>
+		<p class="text-white">Una grave infezione si sta diffondendo nella scuola. Per poterti proteggere dovrai cercare il progetto dell'antidoto!</p>
+		<p class="text-yellow">Completa la missione o ti infetterai irreversibilmente...</p>
+	</div>
+
+	<!-- Inserimento codice -->
+	<div class="container">
+		<p class="text-white">Recati nel laboratorio (1° piano, aula 212) per ottenere il codice.</p>
+		<label for="accessCode" class="text-white">Inserisci il codice per procedere:</label><br />
+		<input type="text" id="accessCode" placeholder="Codice" /><br />
+		<button id="submitCode" style="margin-top: 10px;">Invia</button>
+		<p id="codeError" style="display: none; color: #ea4335; margin-top: 10px;">Codice errato. Riprova.</p>
+	</div>
+
+	<!-- Pulsante per giocare -->
+	<div class="container">
+		<button id="playGame">Gioca qui (non otterrai il codice)</button>
+	</div>
+
+	<!-- Script minimo -->
+	<script>
+		document.getElementById("submitCode").addEventListener("click", function () {
+			const code = document.getElementById("accessCode").value.trim();
+			const error = document.getElementById("codeError");
+
+			if (code === "cpp2025") {
+				window.location.href = "next.html";
+			} else {
+				error.style.display = "block";
+				setTimeout(() => { error.style.display = "none"; }, 2000);
+			}
+		});
+
+		document.getElementById("playGame").addEventListener("click", function () {
+			if (window.innerWidth >= 1024) {
+				window.location.href = "game.html";
+			} else {
+				alert("Non puoi giocare da smartphone. Usa un PC.");
+			}
+		});
+	</script>
+
+</body>
+</html>

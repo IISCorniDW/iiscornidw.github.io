@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="./style.css" />
+	<title>Quiz C++</title>
+</head>
+
+<body>
+	<div class="container text-center">
+		<h1>Complimenti! Hai completato il quiz!</h1>
+		<p class="text-white">Ora per ottenere il codice recati nel laboratorio di informatica</p>
+		<p class="text-yellow">1° piano aula 212</p>
+
+		<div id="codeSection" style="margin-top: 20px;">
+			<label for="accessCode" class="text-white">Inserisci il codice per procedere:</label><br />
+			<input type="text" id="accessCode" placeholder="Codice" /><br />
+			<button id="submitCode" class="btn btn-primary mt-2" style="margin-top: 10px;">Invia</button>
+			<p id="codeError" style="color: #ea4335; display: none; margin-top: 10px;">Codice errato. Riprova.</p>
+		</div>
+
+		<div class="d-flex gap-3 mt-4" style="justify-content: center;">
+			<button id="playGame">Gioca qui (non otterrai il codice)</button>
+		</div>
+	</div>
+
+	<script>
+		function isDesktop() {
+			return window.innerWidth >= 1024;
+		}
+
+		document.getElementById("playGame").addEventListener("click", function () {
+			if (isDesktop()) {
+				window.location.href = "game.html";
+			} else {
+				alert("Non puoi giocare a questo gioco da uno smartphone. Per favore, usa il tuo pc.");
+			}
+		});
+
+		document.getElementById("submitCode").addEventListener("click", function () {
+			const inputCode = document.getElementById("accessCode").value.trim();
+			const correctCode = "cpp2025"; // Cambia qui il codice corretto
+			const errorMsg = document.getElementById("codeError");
+
+			if (inputCode === correctCode) {
+				window.location.href = "next.html"; // Cambia qui la destinazione corretta
+			} else {
+				errorMsg.style.display = "block";
+				setTimeout(() => {
+					errorMsg.style.display = "none";
+				}, 2000);
+			}
+		});
+	</script>
+</body>
+
+</html>
