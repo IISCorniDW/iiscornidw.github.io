@@ -15,15 +15,58 @@
       <div class="titolo">
         <h1>Trova il Codice di Lancio!</h1>
       </div>
-     
-    <p >Dirigiti verso la biblioteca, e cercando minuziosamente tra i libri antichi, troverai nascosto un codice per il lancio del razzo SOS, che ti farà salvare il corni.</p>
-    <p> La biblioteca si trova al piano terra a sinistra dell'auditorium, vicino alle macchinette</p>  
-    <p >Cercando tra il libri ne troverai alcuni con un bollino giallo, Decifra il <strong>messaggio nascosto</strong> nei loro titoli.</p>
-    <p class="highlight"> Il codice andrà decifrato da destra verso sinistra.</p>
-    <p class="warning">Se fallisci... la traiettoria non potrà essere calcolata.</p>
-    <p>Una volta trovato il codice, devi inserirlo nell'url della pagina, senza cancellare quello che c'è gia scritto, prima del secondo punto.</p>
 
-    
+      <p>
+        Dirigiti verso la biblioteca, e cercando minuziosamente tra i libri
+        antichi, troverai nascosto un codice per il lancio del razzo SOS, che ti
+        farà salvare il corni.
+      </p>
+      <p>
+        La biblioteca si trova al piano terra a sinistra dell'auditorium, vicino
+        alle macchinette
+      </p>
+      <p>
+        Cercando tra il libri ne troverai alcuni con un bollino giallo, Decifra
+        il <strong>messaggio nascosto</strong> nei loro titoli.
+      </p>
+      <p class="highlight">
+        Il codice andrà decifrato da destra verso sinistra.
+      </p>
+      <p class="warning">
+        Se fallisci... la traiettoria non potrà essere calcolata.
+      </p>
+      <p>
+        Una volta trovato il codice, devi inserirlo nell'url della pagina, senza
+        cancellare quello che c'è gia scritto, prima del secondo punto.
+      </p>
     </div>
+    <div class="container">
+      <label for="accessCode" class="text-white"
+        >Inserisci il codice per procedere:</label
+      ><br />
+      <input type="text" id="accessCode" placeholder="Codice" /><br />
+      <button id="submitCode" style="margin-top: 10px">Invia</button>
+      <p id="codeError" style="display: none; color: #ea4335; margin-top: 10px">
+        Codice errato. Riprova.
+      </p>
+    </div>
+
+    <script>
+      document
+        .getElementById("submitCode")
+        .addEventListener("click", function () {
+          const code = document.getElementById("accessCode").value.trim();
+          const error = document.getElementById("codeError");
+
+          if (code === "AFR1") {
+            window.location.href = "https://iiscornidw.github.io/labmate/";
+          } else {
+            error.style.display = "block";
+            setTimeout(() => {
+              error.style.display = "none";
+            }, 2000);
+          }
+        });
+    </script>
   </body>
 </html>

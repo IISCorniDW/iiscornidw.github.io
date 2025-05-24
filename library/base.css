@@ -32,6 +32,11 @@ ul > li > a:hover {
 	margin-bottom: 20px;
 }
 
+.text-white {
+	font-size: 1rem;
+	color: white;
+}
+
 /*Div per contenere tutto il della pagina*/
 .container {
 	background-color: rgba(0, 0, 0, 0.5);
@@ -41,7 +46,7 @@ ul > li > a:hover {
 	padding: 20px;
 	max-width: 800px;
 	margin: 20px auto;
-	
+	text-align: center;
 }
 
 p {
@@ -76,4 +81,32 @@ p {
 .highlight {
 	font-weight: bold;
 	color: burlywood;
+}
+
+/* Code */
+#accessCode {
+	padding: 10px;
+	border: 2px solid #ffed08;
+	border-radius: 6px;
+	font-size: 16px;
+	margin-top: 10px;
+	width: 200px;
+	text-align: center;
+}
+
+/* Pulsante invio codice */
+#submitCode {
+	background-color: #dd5341;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-top: 10px;
+}
+
+#submitCode:hover {
+	background-color: #764838;
 }
