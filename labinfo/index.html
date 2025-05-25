@@ -7,44 +7,44 @@
 	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
 	<link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="labinfo-body">
 
 	<!-- Testo introduttivo -->
-	<div class="container">
-		<h1>Benvenuto in laboratorio di informatica!</h1>
-		<p class="text-white">Una grave infezione si sta diffondendo nella scuola. Per poterti proteggere dovrai cercare il progetto dell'antidoto!</p>
-		<p class="text-yellow">Completa la missione o ti infetterai irreversibilmente...</p>
+	<div class="labinfo-container">
+		<h1 class="labinfo-h1">Benvenuto in laboratorio di informatica!</h1>
+		<p class="labinfo-text-white">Una grave infezione si sta diffondendo nella scuola. Per poterti proteggere dovrai cercare il progetto dell'antidoto!</p>
+		<p class="labinfo-text-yellow">Completa la missione o ti infetterai irreversibilmente...</p>
+		<p class="labinfo-text-white">Recati nel laboratorio (1° piano, aula 212) per ottenere il codice.</p>
 	</div>
 
 	<!-- Inserimento codice -->
-	<div class="container">
-		<p class="text-white">Recati nel laboratorio (1° piano, aula 212) per ottenere il codice.</p>
-		<label for="accessCode" class="text-white">Inserisci il codice per procedere:</label><br />
-		<input type="text" id="accessCode" placeholder="Codice" /><br />
-		<button id="submitCode" style="margin-top: 10px;">Invia</button>
-		<p id="codeError" style="display: none; color: #ea4335; margin-top: 10px;">Codice errato. Riprova.</p>
+	<div class="labinfo-container">
+		<label for="accessCode" class="labinfo-text-white">Inserisci il codice per procedere:</label><br />
+		<input type="text" id="labinfo-accessCode" placeholder="Codice" /><br />
+		<button id="labinfo-submitCode" style="margin-top: 10px;">Invia</button>
+		<p id="labinfo-codeError" style="display: none; color: #ea4335; margin-top: 10px;">Codice errato. Riprova.</p>
 	</div>
 
 	<!-- Pulsante per giocare -->
-	<div class="container">
-		<button id="playGame">Gioca qui (non otterrai il codice)</button>
+	<div class="labinfo-container">
+		<button id="labinfo-playGame">Gioca qui (non otterrai il codice)</button>
 	</div>
 
-	<!-- Script minimo -->
+	<!-- Script -->
 	<script>
-		document.getElementById("submitCode").addEventListener("click", function () {
-			const code = document.getElementById("accessCode").value.trim();
-			const error = document.getElementById("codeError");
+		document.getElementById("labinfo-submitCode").addEventListener("click", function () {
+			const code = document.getElementById("labinfo-accessCode").value.trim();
+			const error = document.getElementById("labinfo-codeError");
 
 			if (code === "cpp2025") {
-				window.location.href = "next.html";
+				window.location.href = "/gym";
 			} else {
 				error.style.display = "block";
 				setTimeout(() => { error.style.display = "none"; }, 2000);
 			}
 		});
 
-		document.getElementById("playGame").addEventListener("click", function () {
+		document.getElementById("labinfo-playGame").addEventListener("click", function () {
 			if (window.innerWidth >= 1024) {
 				window.location.href = "game.html";
 			} else {
