@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accesso Laboratorio</title>
+  <link rel="stylesheet" href="labDiLingue.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    .form-wrapper
+    {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    input[type="text"]
+    {
+      padding: 12px;
+      font-size: 18px;
+      border-radius: 6px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .bottone
+    {
+      width: 80%;
+      max-width: 300px;
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px)
+    {
+      .titolo
+      {
+        font-size: 16px;
+        line-height: 1.5em;
+      }
+
+      input[type="text"], .bottone
+      {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="titolo">LABORATORIO DI LINGUE:</h1>
+    <p>
+      Recati nel Laboratorio di Lingue e cerca l'unico COMPUTER ancora funzionante.<br><br>
+      Devi riuscire a rispondere correttamente alle domande e a deficrare il codice.<br><br>
+      Appena decifrato inseriscilo qui sotto
+    </p>
+    <p>
+      VAI NELLA STANZA "110" PER GIOCARE:
+    </p>
+
+    <div class="form-wrapper">
+      <input type="text" id="codeInput" placeholder="Inserisci codice..." />
+      <button onclick="checkCode()" class="bottone">INVIA</button>
+    </div>
+
+    <p id="errorMessage" style="color: yellow; margin-top: 15px;"></p>
+  </div>
+
+  <script>
+    function checkCode()
+    {
+      const input = document.getElementById("codeInput").value.trim().toUpperCase();
+      const errorMsg = document.getElementById("errorMessage");
+
+      if (input === "SOS")
+      {
+        window.location.href = "aulamagna/"; // Cambia se serve
+      }
+      else
+      {
+        errorMsg.textContent = "Codice errato. Riprova.";
+      }
+    }
+  </script>
+</body>
+</html>
