@@ -1,0 +1,68 @@
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+    background-attachment: scroll; /* better for mobile */
+  }
+
+  .container,
+  .popup-content-part,
+  .popup-content-schermo {
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 95%;
+    box-shadow: 0 0 6px green, 0 0 12px green;
+  }
+
+  .titolo {
+    font-size: 10px;
+    margin: 10px 0;
+  }
+
+  .bottone {
+    font-size: 12px;
+  }
+
+  img, 
+  #part {
+    max-width: 100px;
+    max-height: 100px;
+  }
+  
+
+  #schermo {
+    flex-direction: column;
+    align-items: center;
+    top: auto;
+    height: auto;
+    justify-content: center;
+  }
+
+  #antenna {
+    position: relative;
+    left: auto;
+    top: auto;
+  }
+
+  input[type="submit"],
+  .interag {
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .radio2 {
+    width: 80px;
+  }
+
+  .popup-overlay {
+    align-items: flex-start;
+    padding-top: 20px;
+  }
+
+  /* Disable or reduce glitch animation on mobile for better performance */
+  .container,
+  .popup-content-part,
+  .popup-content-schermo {
+    animation: none;
+  }
+}
