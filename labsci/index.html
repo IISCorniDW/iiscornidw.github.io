@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio Scienze</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class = "container">
+        <h1 class = "titolo"> LABORATORIO DI SCIENZE </h1>
+
+            <ul>
+                <li class = "testo"> Per fortuna che ci hai raggiunto in tempo! La situazione è critica e il panico cresce ogni minuto.</li>
+                <li class = "testo"> Nel caos generale, gli scienziati del laboratorio hanno individuato una possibile soluzione:  <strong class = "scritte-gialle">un antidoto sperimentale.</strong></li>
+                <li class = "testo"> Ma c’è un problema. La formula è incompleta e serve qualcuno con le giuste conoscenze per finirla.</li>
+                <li class = "testo"> Dovrai inserire un codice segreto per proseguire il percorso. </li>
+            </ul>
+
+    </div>
+
+
+    <div class = "container">
+        <ul>
+            <li class = "scritte-gialle"> Recati nel laboratorio di scienze ( piano terra ) per ottenere il codice. </li>
+            <li class = "testo"> Ma attenzione… il tempo stringe, e ogni scelta potrebbe fare la differenza. Buona fortuna, scienziato/a. </li>
+        </ul>
+
+        <input class="codice" type="text" id="inserimentoCodice" placeholder="Inserire codice">
+        <button class="bottone" onclick="verificaCodice()">Invia</button>
+          
+        <p id="messaggio"></p>
+
+    </div>
+   
+
+
+
+
+    <script>
+        function verificaCodice() {
+            const codiceInserito = document.getElementById("inserimentoCodice").value.trim().toLowerCase();
+            const codiceCorretto = "necrolux";
+            const elementoMessaggio = document.getElementById("messaggio");
+        
+            elementoMessaggio.textContent = "";
+            elementoMessaggio.classList.remove("messaggio-successo", "messaggio-errore");
+        
+            if (codiceInserito === codiceCorretto) {
+                elementoMessaggio.textContent = "Codice corretto!";
+                elementoMessaggio.classList.add("messaggio-successo");
+                window.location.href = "library/";
+            } else {
+                elementoMessaggio.textContent = "Codice errato. Riprova!";
+                elementoMessaggio.classList.add("messaggio-errore");
+        
+                setTimeout(() => {
+                    elementoMessaggio.textContent = ""; 
+                    elementoMessaggio.classList.remove("messaggio-errore"); 
+                }, 2000);
+            }
+        }
+      </script>
+</body>
+</html>
+

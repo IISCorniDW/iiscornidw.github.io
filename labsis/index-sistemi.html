@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sicurezza Sistemi</title>
+  <link rel="stylesheet" href="base.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main-container">
+    <div class="warning-container">
+      <div class="radiation-animation">☢️</div>
+      <div class="warning-message">
+        <span class="glowing">⚠️ PERICOLO RADIAZIONI ⚠️</span>
+        <p>Dirigiti verso il laboratorio di sistemi e reti<br>per recuperare il codice di accesso</p>
+      </div>
+    </div>
+
+    <div class="access-container">
+      <div class="access-panel">
+        <div class="panel-title">ACCESSO PROTETTO LIVELLO 5</div>
+        <input type="password" id="accessCode" placeholder="INSERIRE CODICE" class="code-input">
+        <button class="verify-button" onclick="checkAccess()">
+          <span>VERIFICA ACCESSO</span>
+          <div class="scan-effect"></div>
+        </button>
+        <div class="error-message" id="errorMsg">▶️ ACCESSO NEGATO ◀️</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const VALID_CODE = "S1ST3M1";
+    const codeInput = document.getElementById('accessCode');
+    const errorMsg = document.getElementById('errorMsg');
+
+    function checkAccess() {
+      if(codeInput.value.toUpperCase() === VALID_CODE) {
+        window.location.href = "laboratorio.html";
+      } else {
+        codeInput.value = '';
+        codeInput.placeholder = 'CODICE ERRATO!';
+        errorMsg.style.display = 'block';
+        setTimeout(() => {
+          errorMsg.style.display = 'none';
+          codeInput.placeholder = 'INSERIRE CODICE';
+        }, 2000);
+      }
+    }
+
+    codeInput.addEventListener('keypress', (e) => {
+      if(e.key === 'Enter') checkAccess();
+    });
+  </script>
+</body>
+</html>

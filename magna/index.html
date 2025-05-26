@@ -10,16 +10,12 @@
     <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
     <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
-
+<body>
     <div class="container">
         <h1 class="titolo">AULA MAGNA</h1>
     </div>
 
-    <div id="popup-overlay1" class="popup-overlay">
-        <div class="popup-content">
-				<font family="Mystery Quest">pass</font>
-        </div>
-    </div>
+
 
 
     <div id="popup-overlay2" class="popup-overlay">
@@ -29,67 +25,72 @@
     </div>
 	
     <div id="popup-overlay3" class="popup-overlay">
-        <div class="popup-content-part">
-				<font family="Mystery Quest">inserire url dell gioco</font>
+        <div class="popup-content-foglio">
+				<font family="Mystery Quest">inserire password</font>
         </div>
     </div>
-
-    <button><img src="assets/antenna.png" class="bottone" id="antenna"></button>
-    <button>
-	    <img src="assets/schermo-rotto.png" class="bottone" id="schermo">
-	    <img src="assets/schermo.png" class="fade-in" class="bottone" id="schermo">
-	</button>
 	<div>
-		    <img onclick='move()' class="click-tracking"  id="part" src="assets/part.png" class="bottone">
+    <button><img src="assets/antenna.png" class="bottone" id="antenna"></button>	
 	</div>
+	
+	<div>
+	<button><img src="assets/schermo.png" class="bottone" id="schermo"></button>
+	</div>
+	
+
+	<img onclick='move()'  src="assets/foglio.png" class="click-tracking"  id="foglio" class="bottone">
 
 
-    <script>
-		window.onload = function() {
-		  move()
-		}
-		function move() {
-		  let img = document.getElementById('part')
-		  img.style.left = Math.floor(Math.random() * window.innerWidth) + "px"
-		  img.style.top = Math.floor(Math.random() * window.innerHeight) + "px"
-		}
-		
-		var counts = {},
-			track  = document.getElementsByClassName('click-tracking');
 
-		for (var i = 0, max = track.length; i < max; i++) {
-			track[i].addEventListener('click', function() {
-				var name = this.name,
-					ele  = document.getElementById(name + '-count') || false;
-				if (typeof counts[name] === 'undefined') {
-					counts[name] = 0;
-				}
-				if (!ele) {
-					var ele    = document.createElement('div');
-						ele.id = name + '-count';
-					
-					this.parentNode.insertBefore(ele, this.nextSibling);
-				}
-				
-				document.getElementById("demo").innerHTML = counts[name]++ ; 
-				//ele.innerHTML = counts[name]++ ;
-			});
-		}
-		
-        $("#foglio").on("click", function () {
-			if(counts[name]>"3")
-            $("#popup-overlay1").fadeIn("slow");
-        });
+<script>
+    window.onload = function () {
+        move();
+    }
 
-        $("#schermo").on("click", function () {
-            $("#popup-content-schermo").fadeIn("slow");
-        });
-        $(".popup-overlay").on("click", function (e) {
-            if ($(e.target).is(".popup-overlay")) {
-                $(this).fadeOut("slow");
+    function move() {
+        let img = document.getElementById('foglio');
+        img.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
+        img.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
+    }
+
+    var counts = {};
+    var track = document.getElementsByClassName('click-tracking');
+
+    for (var i = 0; i < track.length; i++) {
+        track[i].addEventListener('click', function () {
+            var name = this.dataset.name;
+
+            if (typeof counts[name] === 'undefined') {
+                counts[name] = 0;
+            }
+
+            counts[name]++;
+
+            if (name === "foglio") {
+                document.getElementById("demo").innerHTML = counts[name];
+            }
+
+            if (name === "schermo" && counts[name] === 3) {
+                this.src = "assets/schermo_alt.png"; 
+            }
+
+            if (name === "foglio" && counts[name] > 3) {
+                $("#popup-overlay1").fadeIn("slow");
+            }
+
+            if (name === "schermo") {
+                $("#popup-overlay2").fadeIn("slow");
             }
         });
-    </script>
+    }
+
+    $(".popup-overlay").on("click", function (e) {
+        if ($(e.target).is(".popup-overlay")) {
+            $(this).fadeOut("slow");
+        }
+    });
+</script>
+
 </body>
 
 </html>
