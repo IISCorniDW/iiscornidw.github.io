@@ -1,96 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang=it-IT>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab</title>
     <link rel="stylesheet" href="magna.css" style="text/css">
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
-</head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script></head>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <body>
     <div class="container">
         <h1 class="titolo">AULA MAGNA</h1>
     </div>
-
-
-
-
-    <div id="popup-overlay2" class="popup-overlay">
-        <div class="popup-content-schermo">
-				<div id="demo">click</div>
-        </div>
+	
+    <div class="sottoTitolo">
+        ti manca poco immetti il codice e scappa!</h2>
     </div>
 	
-    <div id="popup-overlay3" class="popup-overlay">
-        <div class="popup-content-foglio">
-				<font family="Mystery Quest">inserire password</font>
-        </div>
-    </div>
-	<div>
-    <button><img src="assets/antenna.png" class="bottone" id="antenna"></button>	
+	<img src="assets/porta.png" id="port">
+
+	<div id="lock-plate">
+		<span></span><span></span><span></span><span></span>
+		<div id="lock-wrapper">
+			<div class="welcome-message">WELCOME!</div>
+			<div class="lock-dial" id="dial-one"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+			<div class="lock-dial" id="dial-two"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+			<div class="lock-dial" id="dial-three"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+			<div class="lock-dial" id="dial-four"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+			<div class="lock-dial" id="dial-five"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
+		</div>
 	</div>
+
+
+<script type="text/javascript">
+$(function(){
+	var url= "http://www.google.com"; // url pagina successiva
+	var audio = new Audio('assets/correct.mp3');
 	
-	<div>
-	<button><img src="assets/schermo.png" class="bottone" id="schermo"></button>
-	</div>
+	var comboArray = [0, 0, 0, 0, 0];//combinazione
+	var combination = [0, 0, 0, 0, 1];
 	
+	var gridIncrement = $( ".lock-dial ul" ).css('line-height').replace('px', '')/2;
+	var numNums = $( ".lock-dial:eq(0) ul li" ).length;
+	var halfHeight = gridIncrement*numNums;
+	var initTop = -(halfHeight-gridIncrement);
+	
+	$( ".lock-dial ul" ).css('top', initTop);
+	
+	$( ".lock-dial ul" ).draggable({
+		grid: [ 0, gridIncrement ],
+		axis: 'y',
+		drag: function(){
+			var dragDir = $(this).css('top').replace('px', '') < initTop ? "up" : "down";
+			
+			if(dragDir == "up"){
+				var curNum = parseInt($(this).find('li:last-child').text()) + 1;
+				if(curNum < 10){
+					$(this).append('<li>'+curNum+'</li>');
+				}else{
+					$(this).append('<li>0</li>');
+				};
+			}else{
+				var curNum = parseInt($(this).find('li:first-child').text()) - 1;
+				var thisTop = parseInt($(this).css('margin-top').replace('px', ''));
+				
+				$(this).css({
+					marginTop: thisTop-(gridIncrement*2)
+				});
+				
+				if(curNum > -1){
+					$(this).prepend('<li>'+curNum+'</li>');
+				}else{
+					$(this).prepend('<li>9</li>');
+				};
+			};
+		},
+		stop: function(){
+		
+			//MATHS		
+			var negOrPos = $(this).css('margin-top').replace('px', '') > 0 ? 1 : -1;
+			var thisTopTotal = parseInt($(this).css('top').replace('px', '')) + Math.abs(initTop);
+			var marginMinified = parseInt(Math.abs($(this).css('margin-top').replace('px', ''))) - thisTopTotal;
+			var numIncs = Math.floor(marginMinified/(halfHeight*2));
+			var totalDif = numIncs*(halfHeight*2);
+			var topTen = (marginMinified - totalDif)*negOrPos;
+			var activeIndex = Math.abs(topTen/(gridIncrement*2)) + (halfHeight/(gridIncrement*2));
+			
+			$(this).attr("data-combo-num", $(this).find('li').eq(activeIndex).text()).css({
+				top: -315,
+				marginTop: topTen
+			}).find('li').slice(20).remove();
+			
+			for(var i=0; i<$( ".lock-dial ul" ).length; i++){
+				comboArray[i] = $( ".lock-dial ul:eq("+i+")" ).attr("data-combo-num");
+			}
+			
+			
+			if(comboArray == ""+combination){
+				$('.lock-dial ul').draggable('disable');
+				$('#lock-wrapper').addClass("unlocked");
+				$('.lock-dial').each(function(){
+					var $this = $(this);
+					$this.find('ul').delay(400).css('color', '#0f0').fadeOut(function(){
+						$this.animate({
+							marginTop: 150
+						}, function(){
+							$this.fadeOut(function(){
+								audio.play();
+								$('.welcome-message').fadeIn();
+								window.location.replace(url);
+							});
+						});
+					});
+				});
+			}
+		}
+	});
 
-	<img onclick='move()'  src="assets/foglio.png" class="click-tracking"  id="foglio" class="bottone">
-
-
-
-<script>
-    window.onload = function () {
-        move();
-    }
-
-    function move() {
-        let img = document.getElementById('foglio');
-        img.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
-        img.style.top = Math.floor(Math.random() * window.innerHeight) + "px";
-    }
-
-    var counts = {};
-    var track = document.getElementsByClassName('click-tracking');
-
-    for (var i = 0; i < track.length; i++) {
-        track[i].addEventListener('click', function () {
-            var name = this.dataset.name;
-
-            if (typeof counts[name] === 'undefined') {
-                counts[name] = 0;
-            }
-
-            counts[name]++;
-
-            if (name === "foglio") {
-                document.getElementById("demo").innerHTML = counts[name];
-            }
-
-            if (name === "schermo" && counts[name] === 3) {
-                this.src = "assets/schermo_alt.png"; 
-            }
-
-            if (name === "foglio" && counts[name] > 3) {
-                $("#popup-overlay1").fadeIn("slow");
-            }
-
-            if (name === "schermo") {
-                $("#popup-overlay2").fadeIn("slow");
-            }
-        });
-    }
-
-    $(".popup-overlay").on("click", function (e) {
-        if ($(e.target).is(".popup-overlay")) {
-            $(this).fadeOut("slow");
-        }
-    });
+})
 </script>
-
 </body>
 
 </html>

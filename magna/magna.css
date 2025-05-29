@@ -1,4 +1,5 @@
- @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:700);
 
 body {
   height:100%;
@@ -10,16 +11,39 @@ body {
   background-attachment: fixed;
   font-family: system-ui, sans-serif;
   color: red;
+  text-align:center;
+}
+#port{
+  position:absolute;
+  top:27%;
+  left:56.5%;
+  max-height:20%;
+  max-width:20%;
+  height:200px;
+  width:120px;
 }
 .titolo {
-
   font-family: 'Press Start 2P', monospace;
   color: #20B2AA;
   text-align: center;
+  font-size:3em;
   margin-top: 20px;
   margin-bottom: 20px;
-
-
+}
+.sottoTitolo{
+  font-family: 'Press Start 2P', monospace;
+  color:red;
+  background-color: #2b5e7c;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px yellow, 0 0 20px green;
+  padding: 20px;
+  max-width: 30%;
+  margin: 20px auto;
+  animation: glitch 3.2s infinite;
+  position:absolute;
+  top:70%;
+  left:34%;
 }
 .container {
   background-color: #2b5e7c;
@@ -27,10 +51,9 @@ body {
   border-radius: 8px;
   box-shadow: 0 0 10px green, 0 0 20px green;
   padding: 20px;
-  max-width: 800px;
+  max-width: 55%;
   margin: 20px auto;
   animation: glitch 3s infinite;
-  background-attachment: fixed;
 }
 button{
     background: transparent;
@@ -48,81 +71,6 @@ button{
   transform: scale(1.03);
 
 }
-
-.popup-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  max-width: 800px;
-  margin: 20px auto;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-.popup-content-schermo{
-  background-image:url(schermo.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px green, 0 0 20px green;
-  padding: 20px;
-  margin: 20px auto;
-  animation: glitch 3s infinite;
-  
-}
-.popup-content-foglio {
-  background-color: #2b5e7c;
-  color: white;
-  border-radius: 8px;
-  box-shadow: 0 0 10px green, 0 0 20px green;
-  padding: 20px;
-  max-width: 800px;
-  margin: 20px auto;
-  animation: glitch 3s infinite;
-}
-
-.container2 form {
-  margin-bottom: 20px;
-}
-
-.radio2 {
- width: 100px;
- height: auto;
-}
-img{
-  display:flex;
-  max-height:200px;
-  max-width:200px;
-}
-#schermo {
-  z-index: 3;
-  position:absolute;
-  top: 56%;
-  left: 36%;
-  max-height:150%;
-  height:200px;
-}    
-
-#antenna {
-  top: 43%;
-  left: 30%;
-  z-index: 2;
-  position:absolute;
-}
-#foglio{
-
-  max-height:200px;
-  max-width:200px;
-
-  height: 70px;
-  width:90px;
-  
-}
-
 
 /* EFFETTO GLITCH */
 @keyframes glitch {
@@ -156,16 +104,111 @@ img{
   }
 }
 
-
-
-
-
-label {
-  display: block;
-  margin-top: 1rem;
+/*inizio lock*/
+#lock-plate{
+	padding: 30px 0;
+	border: 1px solid #cfd3d6;
+	background: #ccc;
+	text-align: center;
+	width: 486px;
+	background: -webkit-linear-gradient(top, #eee 0%,#949ba0 100%);
+	background: linear-gradient(to bottom, #eee 0%,#949ba0 100%);
+	border-radius: 4px;
+	margin: 50px auto;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+	position: relative;
+	animation: glitch 2.5s infinite;
+	border-radius: 40px;
+	box-shadow: 0 0 10px grey, 0 0 20px grey;
 }
 
-input[type="submit"], .interag {
-  position: absolute;
-  background-color: yellow;
+#lock-plate span{
+	display: block;
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 10px;
+	box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.6), inset 0 -1px 0 rgba(255, 255, 255, 0.8);
+	background: #bdc1c4;
+}
+
+#lock-plate span:first-child{
+	top: 9px;
+	left: 9px;
+}
+
+#lock-plate span:nth-child(2){
+	top: 9px;
+	right: 9px;
+}
+
+#lock-plate span:nth-child(3){
+	bottom: 9px;
+	left: 9px;
+}
+
+#lock-plate span:nth-child(4){
+	bottom: 9px;
+	right: 9px;
+}
+
+#lock-wrapper{
+	width: 396px;
+	padding: 0 20px 0 8px;
+	border-radius: 7px;
+	height: 120px;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
+	background: -webkit-linear-gradient(top, #c4c4c4 0%,#676767 100%);
+	background: linear-gradient(to bottom, #c4c4c4 0%,#676767 100%);
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.welcome-message{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: 90px;
+	width: 400px;
+	margin-top: -45px;
+	margin-left: -200px;
+	font-size: 70px;
+	font-weight: bold;
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	display: none;
+}
+
+.lock-dial{
+	height: 120px;
+	width: 68px;
+	margin-left: 11px;
+	background: -webkit-linear-gradient(top, #8c9093 0%,#b6babd 9%,#ccd2d6 18%,#ffffff 55%,#ccd2d6 82%,#b6babd 91%,#8c9093 100%);
+	background: linear-gradient(to bottom, #8c9093 0%,#b6babd 9%,#ccd2d6 18%,#ffffff 55%,#ccd2d6 82%,#b6babd 91%,#8c9093 100%);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+	float: left;
+	position: relative;
+	cursor: move;
+}
+
+#lock-wrapper .lock-dial ul{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	list-style: none;
+	font-size: 53px;
+	line-height: 70px;
+	color: #414f6b;
+	text-shadow: 0 -2px 0 #212c42;
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;
+	transition: box-shadow .45s linear, color .25s linear;
+	-webkit-transition: box-shadow .45s linear, color .25s linear;
+}
+
+#lock-wrapper.unlocked .lock-dial ul{
+	color: green;
+	text-shadow: 0 0 5px #3f3;
 }

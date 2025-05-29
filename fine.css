@@ -1,0 +1,111 @@
+/* BASE */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('fine.png') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Share Tech Mono', monospace;
+  color: #f2f2f2;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 2px solid #ff4d4d;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff4d4d;
+  animation: glowBorder 3s ease-in-out infinite;
+  z-index: 2;
+  position: relative;
+}
+
+@keyframes glowBorder {
+  0% { box-shadow: 0 0 10px #ff4d4d; }
+  50% { box-shadow: 0 0 40px #ff8080; }
+  100% { box-shadow: 0 0 10px #ff4d4d; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .warning {
+    font-size: 20px;
+  }
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #ff4d4d;
+  text-transform: uppercase;
+}
+
+.description {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.warning {
+  font-family: 'VT323', monospace;
+  font-size: 24px;
+  color: #ffcc00;
+}
+
+/* GLITCH TEXT EFFECT */
+.glitch-text {
+  position: relative;
+  animation: glitch 4s infinite;
+}
+
+/* GAME LOGO */
+#game-logo {
+  display: block;
+  margin: 20px auto;
+  max-width: 150px;
+  width: 25vw;
+  pointer-events: none;
+}
+
+/* CREDITS BUTTON */
+.credits-button {
+  position: fixed;
+  left: 8%;
+  bottom: 2.5%;
+  transform: translateX(-50%);
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #FF6F61;
+  color: #fff;
+  border: 2px solid #FFCA28;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 3;
+  text-transform: uppercase;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  outline: 1px solid #fff;
+}
+.credits-button:hover {
+  transform: translateX(-50%) scale(1.05);
+}

@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Laboratorio Informatica</title>
 	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 	<link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="labinfo-body">
 
 	<!-- Testo introduttivo -->
 	<div class="labinfo-container">
 		<h1 class="labinfo-h1">Benvenuto in laboratorio di informatica!</h1>
-		<p class="labinfo-text-white">Una grave infezione si sta diffondendo nella scuola. Per poterti proteggere dovrai cercare il progetto dell'antidoto!</p>
+		<p class="labinfo-text-white">Una grave infezione si sta diffondendo nella scuola. Per poterti proteggere dovrai
+			cercare il progetto dell'antidoto!</p>
 		<p class="labinfo-text-yellow">Completa la missione o ti infetterai irreversibilmente...</p>
 		<p class="labinfo-text-white">Recati nel laboratorio (1° piano, aula 212) per ottenere il codice.</p>
 	</div>
@@ -21,13 +25,16 @@
 	<div class="labinfo-container">
 		<label for="accessCode" class="labinfo-text-white">Inserisci il codice per procedere:</label><br />
 		<input type="text" id="labinfo-accessCode" placeholder="Codice" /><br />
-		<button id="labinfo-submitCode" style="margin-top: 10px;">Invia</button>
+		<button id="labinfo-submitCode" style="margin-top: 10px;"><i class="bi bi-check2-circle"></i> Controlla</button>
 		<p id="labinfo-codeError" style="display: none; color: #ea4335; margin-top: 10px;">Codice errato. Riprova.</p>
 	</div>
 
 	<!-- Pulsante per giocare -->
 	<div class="labinfo-container">
-		<button id="labinfo-playGame">Gioca qui (non otterrai il codice)</button>
+		<p class="labinfo-text-white">Se vuoi comunque divertirti col nostro gioco premi qui sotto</p>
+		<p class="labinfo-text-yellow"><i class="bi bi-exclamation-triangle-fill"></i> Ma non otterrai il codice per
+			procedere <i class="bi bi-exclamation-triangle-fill"></i></p>
+		<button id="labinfo-playGame"><i class="bi bi-play-fill"></i> Gioca</button>
 	</div>
 
 	<!-- Script -->
@@ -54,4 +61,5 @@
 	</script>
 
 </body>
+
 </html>

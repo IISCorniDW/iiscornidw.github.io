@@ -12,6 +12,15 @@
 /* Titolo */
 .labinfo-h1 {
 	font-family: 'Press Start 2P';
+	animation: glitch 4s infinite;
+}
+
+@keyframes glitch {
+    0%,100% { text-shadow: none; transform: none; }
+    2% { text-shadow: 2px 0 red,-2px 0 blue; transform: translateX(-1px); }
+    4% { text-shadow: -2px 0 red,2px 0 blue; transform: translateX(1px); }
+    6% { text-shadow: 2px 2px lime,-2px -2px magenta; transform: translateY(1px); }
+    8% { text-shadow: none; transform: none; }
 }
 
 /* Testi */
@@ -25,9 +34,14 @@
 	color: #ffed08;
 }
 
+.labinfo-text-green {
+	font-size: 1rem;
+	color: #00ff00;
+}
+
 /* Contenitore principale */
 .labinfo-container {
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.6);
 	color: red;
 	border-radius: 8px;
 	box-shadow: 0 0 10px rgba(255, 0, 0, 0.8),
