@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
@@ -12,21 +13,21 @@ body {
 
 .titolo {
   font-family: 'Press Start 2P', monospace;
-  color:#20B2AA;
+  color: #20B2AA;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .container {
-  background-color: #004526; 
+  background-color: #2b5e7c;
   color: white;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 10px green, 0 0 20px green;
   padding: 20px;
   max-width: 800px;
   margin: 20px auto;
-  animation: glitch 1s infinite;
+  animation: glitch 3s infinite;
 }
 
 .bottone {
@@ -76,7 +77,7 @@ body {
 
 .risposta:hover {
   transform: scale(1.02);
-  background-color: #005000;
+  background-color: #00b050;
 }
 
 .risposta input[type="radio"] {
@@ -106,26 +107,74 @@ body {
   background-color: rgba(128, 0, 0, 0.2);
 }
 
-/* EFFETTO GLITCH */
+/* Effetto glitch */
 @keyframes glitch {
-  0%, 100% {
-    text-shadow: none;
-    transform: none;
-  }
-  2% {
-    text-shadow: 2px 0 red, -2px 0 blue;
-    transform: translateX(-1px);
-  }
-  4% {
-    text-shadow: -2px 0 red, 2px 0 blue;
-    transform: translateX(1px);
-  }
-  6% {
-    text-shadow: 2px 2px lime, -2px -2px magenta;
-    transform: translateY(1px);
-  }
-  8% {
-    text-shadow: none;
-    transform: none;
-  }
+  0%, 100% { text-shadow: none; transform: none; }
+  10% { text-shadow: 2px 0 red, -2px 0 blue; transform: translateX(-1px); }
+  20% { text-shadow: -2px 0 red, 2px 0 blue; transform: translateX(1px); }
+  30% { text-shadow: 2px 2px lime, -2px -2px magenta; transform: translateY(1px); }
+  40% { text-shadow: none; transform: none; }
+  60% { text-shadow: -1px -1px cyan, 1px 1px magenta; transform: translateX(-1px); }
+  80% { text-shadow: 1px 0 yellow, -1px 0 cyan; transform: translateY(-1px); }
+}
+
+#nextRoomBtn {
+  width: 300px;
+  height: 100px;
+  position: fixed;
+  bottom: 20px;
+  padding: 12px 20px;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 1000;
+}
+#photoGalleryBtn {
+  width: 300px;
+  height: 70px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #1e90ff;
+  color: white;
+  border-radius: 10px;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#photoGalleryBtn:hover {
+  background-color: #4682b4;
+}
+
+#nextRoomBtn {
+  right: 20px;
+  background-color: #45a049;
+  border: none;
+}
+
+#nextRoomBtn:hover {
+  background-color: #e65b54;
+}
+
+#photoGalleryBtn {
+  left: 20px;
+  background-color: #1e90ff;
+}
+
+#photoGalleryBtn:hover {
+  background-color: #4682b4;
 }
