@@ -16,15 +16,13 @@
     </div>
 	
     <div class="sottoTitolo">
-        ti manca poco immetti il codice e scappa!</h2>
+        ti manca poco, immetti il codice<br/><strong> e scappa!</strong>
     </div>
-	
-	<img src="assets/porta.png" id="port">
+
 
 	<div id="lock-plate">
-		<span></span><span></span><span></span><span></span>
 		<div id="lock-wrapper">
-			<div class="welcome-message">WELCOME!</div>
+			<div class="bravo-message">bravo!</div>
 			<div class="lock-dial" id="dial-one"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
 			<div class="lock-dial" id="dial-two"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
 			<div class="lock-dial" id="dial-three"><ul data-combo-num="0"><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>0</li><li>1</li><li>2</li><li>3</li><li>4</li></ul></div>
@@ -36,16 +34,23 @@
 
 <script type="text/javascript">
 $(function(){
-	var url= "http://www.google.com"; // url pagina successiva
+	var url= "http://fine.html"; // url pagina successiva
 	var audio = new Audio('assets/correct.mp3');
 	
-	var comboArray = [0, 0, 0, 0, 0];//combinazione
-	var combination = [0, 0, 0, 0, 1];
+	var comboArray = [0, 0, 0, 0, 0];//combinazione iniziale
+	var combination = [1, 2, 3, 4, 5];//combinazione risolutiva
 	
 	var gridIncrement = $( ".lock-dial ul" ).css('line-height').replace('px', '')/2;
 	var numNums = $( ".lock-dial:eq(0) ul li" ).length;
 	var halfHeight = gridIncrement*numNums;
 	var initTop = -(halfHeight-gridIncrement);
+	
+	function sleep(ms) {
+	  return new Promise(resolve => setTimeout(resolve,2000))// sleep
+	}
+
+
+
 	
 	$( ".lock-dial ul" ).css('top', initTop);
 	
@@ -109,7 +114,8 @@ $(function(){
 						}, function(){
 							$this.fadeOut(function(){
 								audio.play();
-								$('.welcome-message').fadeIn();
+								sleep();
+								$('.bravo-message').fadeIn();
 								window.location.replace(url);
 							});
 						});

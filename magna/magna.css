@@ -13,14 +13,8 @@ body {
   color: red;
   text-align:center;
 }
-#port{
-  position:absolute;
-  top:27%;
-  left:56.5%;
-  max-height:20%;
-  max-width:20%;
-  height:200px;
-  width:120px;
+strong{
+  color:#ffe600;
 }
 .titolo {
   font-family: 'Press Start 2P', monospace;
@@ -104,6 +98,7 @@ button{
   }
 }
 
+
 /*inizio lock*/
 #lock-plate{
 	padding: 30px 0;
@@ -165,7 +160,7 @@ button{
 	margin: 0 auto;
 }
 
-.welcome-message{
+.bravo-message{
 	position: absolute;
 	top: 50%;
 	left: 50%;
