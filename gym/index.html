@@ -1,12 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>palestra</title>
-  <link rel="icon" type="image/png" href="icona-gioco.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="icona.png" sizes="32x32">
   <link href="style.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 </head>
 <body>
   <div class="container">
@@ -48,6 +50,16 @@
       🔐 La password per entrare in palestra è: <strong>"hacking101"</strong>
     </div>
   </div>
+
+  <!-- 🔍 Link per vedere foto palestra -->
+  <a href="foto_palestra.html" id="photoGalleryBtn">
+    <i class="bi bi-camera"></i> Guarda foto palestra
+  </a>
+
+  <!-- 🔓 Pulsante per procedere -->
+  <button id="nextRoomBtn">
+    <i class="bi bi-play-fill"></i> Procedi nella prossima stanza
+  </button>
 
   <script>
     let risposta1Corretta = false;
@@ -96,6 +108,15 @@
         document.getElementById("password").style.display = "block";
       }
     }
+
+    document.getElementById("nextRoomBtn").addEventListener("click", function () {
+      const passwordUtente = prompt("Inserisci la password per accedere alla prossima stanza:");
+      if (passwordUtente === "python2025!") {
+        window.location.href = "/labsci";
+      } else {
+        alert("❌ Password errata. Riprova.");
+      }
+    });
   </script>
 </body>
 </html>
