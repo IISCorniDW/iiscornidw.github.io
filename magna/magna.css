@@ -12,6 +12,8 @@ body {
   font-family: system-ui, sans-serif;
   color: red;
   text-align:center;
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
 }
 strong{
   color:#ffe600;

@@ -80,3 +80,15 @@ p {
 /* Debug per ridimensionamento */
 .debug-border {
 	border: 1px dashed
+}
+	
+input[type="password"] {
+    margin-left: 18%; /* Mantieni il margine a sinistra */
+    padding: 10px;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px; /* Imposta una larghezza fissa per l'input */
+    display: block; /* Assicurati che l'input sia un blocco */
+    margin-top: 10px; /* Aggiungi un margine superiore per distanziarlo dal testo */
+}

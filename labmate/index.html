@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="base.css">
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>
-			Prossimo Passo
-		</title>
-	</head>
-	<body>
-		<div class="contenitore">
-			<div class="titolo">
-				<p>
-					&nbsp
-				</p>
-				<h1>
-					Prossimo Obbiettivo
-				</h1>
-			</div>
-			<div class ="test2">
-				<p>
-					&nbsp
-				</p>
-				<h2>
-					Ottimo lavoro
-				</h2>
-			</div>
-			<p>
-				Siete riusciti a superare con successo la scorsa sfida, ora dovete raggiungere la prossima stanza, ecco un piccolo indizio<br>
-				Sono piena di numeri, operazioni e scritte.<br>
-				Buona fortuna!
-			</p>
-		</div>
-	</body>
+<html lang="it">
+<head>
+    <title>Inserisci Codice</title>
+    <link rel="stylesheet" type="text/css" href="base.css">
+</head>
+<body>
+    <div class="contenitore">
+        <div class="titolo">
+            <h1>Lab Di Mate</h1>
+        </div>
+        <div class="test2">
+            <h2>Ottimo lavoro</h2>
+        </div>
+        <p>Sei riuscito a trovare il necessario per il razzo, per proseguire inserisci il codice:</p>
+        <input type="password" id="codice" placeholder="Inserisci il codice">
+        <div class="bottone">
+            <a href="#" onclick="verificaCodice()">Verifica</a>
+        </div>
+        <p id="risultato"></p>
+    </div>
+    <script src="codice.js"></script>
+</body>
 </html>
