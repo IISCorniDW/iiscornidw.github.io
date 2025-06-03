@@ -1,0 +1,135 @@
+/* BASE */
+body {
+  margin: 0; /* rimuove margini esterni dal body */
+  padding: 0; /* rimuove padding interno dal body */
+  background: url('fine.png') no-repeat center center fixed; /* imposta un'immagine di sfondo centrata e fissa */
+  background-size: cover; /* fa sì che lo sfondo copra tutto lo schermo */
+  font-family: 'Share Tech Mono', monospace; /* font del testo */
+  color: #f2f2f2; /* colore del testo bianco sporco */
+  position: relative; /* posizione relativa per gestire elementi figli assoluti */
+  overflow-x: hidden; /* nasconde lo scroll orizzontale */
+}
+
+.container {
+  background-color: rgba(0, 0, 0, 0.6); /* sfondo nero semi-trasparente */
+  border: 2px solid #ff4d4d; /* bordo rosso acceso */
+  max-width: 900px; /* larghezza massima del contenitore */
+  margin: 50px auto; /* centra orizzontalmente e mette margine sopra/sotto */
+  padding: 30px; /* spazio interno */
+  text-align: center; /* centra il testo */
+  border-radius: 10px; /* angoli smussati */
+  box-shadow: 0 0 20px #ff4d4d; /* ombra rossa attorno */
+  animation: glowBorder 3s ease-in-out infinite; /* anima l’effetto glow del bordo */
+  z-index: 2; /* livello sopra altri elementi */
+  position: relative; /* posizione relativa per elementi interni assoluti */
+}
+
+@keyframes glowBorder {
+  0% { box-shadow: 0 0 10px #ff4d4d; } /* inizio effetto glow debole */
+  50% { box-shadow: 0 0 40px #ff8080; } /* effetto glow più forte a metà */
+  100% { box-shadow: 0 0 10px #ff4d4d; } /* ritorna glow debole */
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) { /* per schermi piccoli */
+  .container {
+    margin: 20px; /* margine più piccolo */
+    padding: 20px; /* padding ridotto */
+  }
+
+  h1 {
+    font-size: 20px; /* titolo più piccolo */
+  }
+
+  .description {
+    font-size: 16px; /* descrizione più piccola */
+  }
+
+  .warning {
+    font-size: 20px; /* avviso più piccolo */
+  }
+}
+
+/* TYPOGRAPHY */
+h1 {
+  font-family: 'Press Start 2P', cursive; /* font da videogioco */
+  font-size: 28px; /* grandezza testo */
+  margin-bottom: 20px; /* spazio sotto il titolo */
+  color: #ff4d4d; /* colore rosso acceso */
+  text-transform: uppercase; /* tutto maiuscolo */
+}
+
+.description {
+  font-family: 'Share Tech Mono', monospace; /* font monospace */
+  font-size: 18px; /* grandezza media */
+  line-height: 1.6; /* spaziatura tra righe */
+  margin-bottom: 30px; /* spazio sotto la descrizione */
+}
+
+.warning {
+  font-family: 'VT323', monospace; /* altro font da terminale */
+  font-size: 24px; /* grandezza grande */
+  color: #ffcc00; /* colore giallo tipo avviso */
+}
+
+/* GLITCH TEXT EFFECT */
+.glitch-text {
+  position: relative; /* necessaria per gestire eventuali effetti assoluti */
+  animation: glitch 4s infinite; /* applica animazione glitch continua */
+}
+
+/* GAME LOGO */
+#game-logo {
+  display: block; /* lo rende un blocco */
+  margin: 20px auto; /* centra il logo con margine sopra/sotto */
+  max-width: 150px; /* larghezza massima */
+  width: 25vw; /* larghezza relativa al viewport */
+  pointer-events: none; /* non cliccabile */
+}
+
+/* CREDITS BUTTON */
+.credits-button {
+  position: fixed; /* posizione fissa sulla finestra */
+  left: 8%; /* distanza da sinistra */
+  bottom: 2.5%; /* distanza dal basso */
+  transform: translateX(-50%); /* centra orizzontalmente rispetto a sinistra */
+  padding: 1rem 2.5rem; /* spazio interno */
+  font-size: 1rem; /* grandezza testo */
+  font-family: 'Press Start 2P', cursive; /* font retro */
+  background-color: #FF6F61; /* colore sfondo bottone */
+  color: #fff; /* colore testo bianco */
+  border: 2px solid #FFCA28; /* bordo giallo */
+  border-radius: 10px; /* angoli smussati */
+  cursor: pointer; /* cambia il cursore a mano */
+  z-index: 3; /* sta sopra gli altri elementi */
+  text-transform: uppercase; /* testo tutto maiuscolo */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* effetto di transizione dolce */
+  outline: 1px solid #fff; /* bordo bianco sottile */
+}
+
+.credits-button:hover {
+  transform: translateX(-50%) scale(1.05); /* effetto zoom quando ci passi sopra */
+}
+
+/* BOTTONE INDIETRO (credits.html) */
+.back-button {
+  position: fixed; /* posizione fissa sullo schermo */
+  left: 50%; /* centrato orizzontalmente */
+  bottom: 5%; /* distanza dal fondo */
+  transform: translateX(-50%); /* centra esattamente */
+  padding: 1rem 2.5rem; /* spazio interno */
+  font-family: 'Press Start 2P', cursive; /* font retro */
+  background-color: #FF6F61; /* sfondo bottone (corretto da ground-color) */
+  color: #fff; /* testo bianco */
+  border: 2px solid #FFCA28; /* bordo giallo */
+  border-radius: 10px; /* angoli smussati */
+  cursor: pointer; /* cambia il cursore */
+  text-transform: uppercase; /* tutto maiuscolo */
+  outline: 1px solid #fff; /* contorno bianco */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* transizione animata */
+  z-index: 3; /* sopra altri elementi */
+}
+
+.back-button:hover {
+  transform: translateX(-50%) scale(1.05); /* effetto ingrandimento al passaggio */
+}

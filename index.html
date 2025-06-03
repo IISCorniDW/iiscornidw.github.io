@@ -4,79 +4,80 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Apocalisse Corni</title>
-  <!-- import dei font per lo stile retrò -->
+  <!-- carica font per stile retrò -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&family=VT323&display=swap" rel="stylesheet">
-  <!-- collegamento al file CSS esterno -->
+  <!-- collega al CSS -->
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-  <!-- overlay radioattiva: crea un effetto di luce verdastra / radioattiva sullo schermo -->
+  <!-- verde radioattivo sopra tutto, effetto luce -->
   <div class="radioactive-overlay"></div>
-  <!-- glitch overlay: simulazione di sfarfallio video / distorsione -->
+  <!-- effetto glitch / distorsione sullo schermo -->
   <div class="glitch-screen"></div>
-  <!-- fade: elemento nero che sfuma lo schermo a nero -->
+  <!-- schermo nero che sfuma piano piano -->
   <div id="fade-to-black"></div>
 
-  <!-- intro video nascosto di base -->
+  <!-- video intro nascosto di base -->
   <video id="intro-video" src="intro.mp4" preload="auto"></video>
 
-  <!-- contenuto principale nascosto finché non si avvia il gioco -->
+  <!-- contenuto principale nascosto finché non si clicca -->
   <div class="main-content">
     <div class="container">
-      <!-- titolo principale con effetto glitch -->
+      <!-- titolo con effetto glitch -->
       <h1 class="glitch-text">Apocalisse Corni</h1>
-      <!-- descrizione del gioco con stile glitch -->
+      <!-- descrizione del gioco, testo glitchato -->
       <p class="description glitch-text">
         Il Corni è stato colpito da una catastrofe nucleare. L’aria è tossica, le strade sono vuote, la città è avvolta da una luce innaturale.<br>
         Sarà una sfida per la <strong>sopravvivenza</strong>. Riuscirai a risolvere gli enigmi prima che le radiazioni ti consumino?
       </p>
-      <!-- messaggio di avvertimento finale -->
+      <!-- avviso finale -->
       <p class="warning glitch-text">
         Se fallisci... la contaminazione sarà irreversibile.
       </p>
     </div>
 
-    <!-- logo del gioco -->
+    <!-- logo gioco centrato -->
     <img id="game-logo" src="logo.png" alt="Corni Escaperoom Logo">
-    <!-- pulsante per iniziare il gioco -->
+    <!-- bottone per iniziare il gioco -->
     <button class="start-button">Inizia il Gioco</button>
   </div>
 
-  <!-- pulsante per andare alla pagina dei crediti -->
+  <!-- bottone per aprire pagina crediti -->
   <a href="credits.html"><button class="credits-button">Crediti</button></a>
 
   <script>
-    // selezione degli elementi dal DOM
-    const btn    = document.querySelector('.start-button'); // bottone Inizia il Gioco
-    const glitch = document.querySelector('.glitch-screen'); // overlay glitch
-    const fade   = document.getElementById('fade-to-black'); // overlay fade to black
-    const vid    = document.getElementById('intro-video'); // video d'introduzione
+  // prendo i riferimenti ai bottoni e overlay
+  const btn    = document.querySelector('.start-button');
+  const glitch = document.querySelector('.glitch-screen');
+  const fade   = document.getElementById('fade-to-black');
+  const vid    = document.getElementById('intro-video');
 
-    // quando clicchi sul bottone
-    btn.addEventListener('click', () => {
-      // attiva l'effetto glitch
-      glitch.classList.add('active');
-      // dopo 1 secondo togli il glitch
-      setTimeout(() => glitch.classList.remove('active'), 1000);
+  btn.addEventListener('click', () => {
+    // attiva effetto glitch e bagliore sul bottone
+    glitch.classList.add('active');
+    btn.classList.add('clicked');
 
-      // mostra e riproduci il video di intro
+    // disattiva glitch dopo 1 secondo
+    setTimeout(() => glitch.classList.remove('active'), 1000);
+
+    // dopo 300ms mostra e fa partire il video intro
+    setTimeout(() => {
       vid.style.display = 'block';
       vid.play();
+    }, 300);
 
-      // quando il video inizia a suonare
-      vid.addEventListener('play', () => {
-        // dopo 3 secondi sfuma a nero
-        setTimeout(() => fade.style.opacity = 1, 3000);
-      }, { once: true }); // esegui solo una volta
+    // quando il video parte, inizia fade nero dopo 3 secondi
+    vid.addEventListener('play', () => {
+      setTimeout(() => fade.style.opacity = 1, 3000);
+    }, { once: true });
 
-      // quando il video finisce
-      vid.addEventListener('ended', () => {
-        // dopo 2 secondi reindirizza alla pagina di gioco
-        setTimeout(() => window.location.href = 'labsis/index-sistemi.html', 2000);
-      }, { once: true }); // esegui solo una volta
-
-    });
+    // quando video finisce, vai alla pagina gioco dopo 2 secondi
+    vid.addEventListener('ended', () => {
+      setTimeout(() => window.location.href = 'game.html', 2000);
+    }, { once: true });
+  });
   </script>
+
 </body>
 </html>
